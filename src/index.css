@@ -154,6 +154,13 @@ body {
   border-collapse: collapse;
   margin: 0.75em 0;
   font-size: 0.9em;
+  display: block;
+  overflow-x: auto;
+}
+
+.prose-container th:first-child,
+.prose-container td:first-child {
+  min-width: 140px;
 }
 
 .prose-container th {

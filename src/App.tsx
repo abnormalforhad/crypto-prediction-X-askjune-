@@ -3,6 +3,7 @@ import { Send, Bot, User, Zap, Cpu, AlertTriangle, Blocks, TerminalSquare, Loade
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 export default function App() {
   const [models, setModels] = useState<any[]>([]);
@@ -244,7 +245,7 @@ export default function App() {
                 }`}>
                   {msg.role === 'assistant' ? (
                     <div className="prose-container leading-relaxed text-[15px]">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content}</ReactMarkdown>
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{msg.content}</ReactMarkdown>
                     </div>
                   ) : (
                     <p className="whitespace-pre-wrap leading-relaxed text-[15px]">{msg.content}</p>
