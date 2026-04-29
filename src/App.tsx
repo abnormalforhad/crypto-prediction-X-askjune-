@@ -195,7 +195,7 @@ export default function App() {
                 </div>
                 <h2 className="serif text-4xl mb-3 text-white">Predict market movements with <span className="italic accent-text">precision</span>.</h2>
                 <p className="text-sm opacity-50 max-w-lg mb-10 text-[#e5e5e5] leading-relaxed">
-                  Access the June AI cluster directly. Analyze chains, verify contracts, or simulate trades in real-time. Make sure your <code className="bg-[#111] px-1.5 py-0.5 rounded border border-glass text-[#c5a47e] font-mono text-[11px]">JUNE_API_KEY</code> is set in your environment.
+                  Access the June AI cluster directly. Analyze chains, verify contracts, or simulate trades in real-time. 
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl text-left">
