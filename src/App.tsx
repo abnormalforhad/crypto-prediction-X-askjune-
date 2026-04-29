@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Send, Bot, User, Zap, Cpu, AlertTriangle, Blocks, TerminalSquare, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function App() {
   const [models, setModels] = useState<any[]>([]);
@@ -240,7 +242,13 @@ export default function App() {
                     ? 'bg-red-950/20 border border-red-900/30 text-red-400 font-mono text-sm'
                     : 'bg-transparent border-glass border-l-[#c5a47e] border-l-2 text-[#e5e5e5]'
                 }`}>
-                  <p className="whitespace-pre-wrap leading-relaxed text-[15px]">{msg.content}</p>
+                  {msg.role === 'assistant' ? (
+                    <div className="prose-container leading-relaxed text-[15px]">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content}</ReactMarkdown>
+                    </div>
+                  ) : (
+                    <p className="whitespace-pre-wrap leading-relaxed text-[15px]">{msg.content}</p>
+                  )}
                 </div>
               </motion.div>
             ))}
