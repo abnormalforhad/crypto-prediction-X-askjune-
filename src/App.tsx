@@ -79,7 +79,13 @@ export default function App() {
         },
         body: JSON.stringify({
           model: selectedModel,
-          messages: newMessages
+          messages: [
+            {
+              role: 'system',
+              content: 'You are AskJune, a crypto and blockchain AI assistant. IMPORTANT: You MUST always respond in the exact same language the user writes in. If the user writes in English, respond in English. If the user writes in Bengali, respond in Bengali. If the user writes in any other language, respond in that language. Never switch languages unless the user does.'
+            },
+            ...newMessages
+          ]
         })
       });
 
