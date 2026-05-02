@@ -198,3 +198,79 @@ body {
 .prose-container > *:last-child {
   margin-bottom: 0;
 }
+
+/* ─── Asset Display ─── */
+.asset-display-card {
+  border-radius: 14px;
+  border: 1px solid rgba(197,164,126,0.15);
+  background: rgba(197,164,126,0.03);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  transition: border-color .3s;
+}
+.asset-display-card:hover { border-color: rgba(197,164,126,0.3); }
+
+.asset-image-wrap {
+  position: relative; cursor: zoom-in; overflow: hidden;
+  background: rgba(0,0,0,0.4); min-height: 120px;
+}
+.asset-image {
+  width: 100%; height: auto; max-height: 320px;
+  object-fit: cover; display: block; transition: transform .4s;
+}
+.asset-image-wrap:hover .asset-image { transform: scale(1.02); }
+
+.asset-skeleton {
+  position: absolute; inset: 0;
+  background: linear-gradient(110deg, rgba(197,164,126,0.03) 8%, rgba(197,164,126,0.08) 18%, rgba(197,164,126,0.03) 33%);
+  background-size: 200% 100%; animation: asset-shimmer 1.5s infinite;
+}
+@keyframes asset-shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+.asset-expand-btn {
+  position: absolute; top: 10px; right: 10px; width: 28px; height: 28px;
+  border-radius: 8px; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center;
+  justify-content: center; color: rgba(255,255,255,0.6); opacity: 0; transition: opacity .2s;
+}
+.asset-image-wrap:hover .asset-expand-btn { opacity: 1; }
+
+.asset-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; border-top: 1px solid rgba(255,255,255,0.05);
+}
+.asset-meta { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.asset-label { font-size: 11px; color: rgba(229,229,229,0.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.asset-category { font-size: 9px; text-transform: uppercase; letter-spacing: .08em; color: #c5a47e; background: rgba(197,164,126,0.1); padding: 2px 6px; border-radius: 4px; }
+
+.asset-nav { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.asset-nav-btn {
+  width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center;
+  justify-content: center; color: rgba(229,229,229,0.4); background: transparent;
+  border: 1px solid rgba(255,255,255,0.06); cursor: pointer; transition: all .15s;
+}
+.asset-nav-btn:hover { color: #c5a47e; border-color: rgba(197,164,126,0.3); }
+.asset-counter { font-size: 10px; font-family: monospace; color: rgba(229,229,229,0.35); min-width: 28px; text-align: center; }
+
+/* Lightbox */
+.asset-lightbox-overlay {
+  position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: center; padding: 24px;
+}
+.asset-lightbox-content { position: relative; max-width: 90vw; max-height: 90vh; }
+.asset-lightbox-close {
+  position: absolute; top: -40px; right: 0; width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); cursor: pointer;
+}
+.asset-lightbox-close:hover { color: #c5a47e; }
+.asset-lightbox-img { max-width: 100%; max-height: 80vh; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 32px 64px rgba(0,0,0,0.5); }
+.asset-lightbox-caption { text-align: center; margin-top: 12px; font-size: 12px; color: rgba(229,229,229,0.4); }
+
+/* Welcome asset previews */
+.welcome-asset-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 16px; margin-bottom: 24px; }
+@media (max-width:640px) { .welcome-asset-grid { grid-template-columns: repeat(2,1fr); } }
+.welcome-asset-item { border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); overflow: hidden; transition: all .3s; }
+.welcome-asset-item:hover { border-color: rgba(197,164,126,0.2); transform: translateY(-2px); }
+.welcome-asset-item img { width: 100%; height: 80px; object-fit: cover; display: block; }
+.welcome-asset-item span { display: block; font-size: 9px; text-transform: uppercase; letter-spacing: .1em; color: rgba(229,229,229,0.35); padding: 6px 8px; text-align: center; }

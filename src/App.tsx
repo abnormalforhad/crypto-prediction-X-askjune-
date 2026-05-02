@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import AssetDisplay from './components/AssetDisplay';
+import { loadManifest, matchAssetsToText, getAssetsByCategory, type Asset } from './lib/assetLibrary';
 
 export default function App() {
   const [models, setModels] = useState<any[]>([]);
@@ -15,11 +17,24 @@ export default function App() {
   const [input, setInput] = useState('');
   const [loadingChat, setLoadingChat] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
+
+  // Asset library state
+  const [assetsReady, setAssetsReady] = useState(false);
+  const [messageAssets, setMessageAssets] = useState<Record<number, Asset[]>>({});
+  const [welcomeAssets, setWelcomeAssets] = useState<Asset[]>([]);
   
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetchModels();
+    // Load asset manifest on mount
+    loadManifest().then(() => {
+      setAssetsReady(true);
+      // Grab a mix of assets for the welcome screen
+      const coins = getAssetsByCategory('coins');
+      const concepts = getAssetsByCategory('concepts');
+      setWelcomeAssets([...coins.slice(0, 2), ...concepts.slice(0, 2)]);
+    });
   }, []);
 
   useEffect(() => {
@@ -99,8 +114,18 @@ export default function App() {
       }
 
       const reply = data.choices?.[0]?.message?.content || JSON.stringify(data, null, 2);
-      
-      setMessages([...newMessages, { role: 'assistant', content: reply }]);
+      const updatedMessages = [...newMessages, { role: 'assistant' as const, content: reply }];
+      setMessages(updatedMessages);
+
+      // Match assets to the AI response + user query
+      if (assetsReady) {
+        const combinedText = input.trim() + ' ' + reply;
+        const matched = matchAssetsToText(combinedText, 3);
+        if (matched.length > 0) {
+          const msgIdx = updatedMessages.length - 1;
+          setMessageAssets((prev) => ({ ...prev, [msgIdx]: matched }));
+        }
+      }
     } catch (err: any) {
       setMessages([...newMessages, { role: 'system', content: `[SYSTEM ERROR] ${err.message}` }]);
     } finally {
@@ -194,9 +219,21 @@ export default function App() {
                   <Blocks className="w-8 h-8" />
                 </div>
                 <h2 className="serif text-4xl mb-3 text-white">Predict market movements with <span className="italic accent-text">precision</span>.</h2>
-                <p className="text-sm opacity-50 max-w-lg mb-10 text-[#e5e5e5] leading-relaxed">
+                <p className="text-sm opacity-50 max-w-lg mb-6 text-[#e5e5e5] leading-relaxed">
                   Access the June AI cluster directly. Analyze chains, verify contracts, or simulate trades in real-time. 
                 </p>
+
+                {/* Welcome asset previews */}
+                {welcomeAssets.length > 0 && (
+                  <div className="welcome-asset-grid w-full max-w-2xl">
+                    {welcomeAssets.map((a) => (
+                      <div key={a.id} className="welcome-asset-item">
+                        <img src={a.path} alt={a.alt} loading="lazy" />
+                        <span>{a.alt}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl text-left">
                   {[
@@ -244,9 +281,13 @@ export default function App() {
                     : 'bg-transparent border-glass border-l-[#c5a47e] border-l-2 text-[#e5e5e5]'
                 }`}>
                   {msg.role === 'assistant' ? (
-                    <div className="prose-container leading-relaxed text-[15px]">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{msg.content}</ReactMarkdown>
-                    </div>
+                    <>
+                      <div className="prose-container leading-relaxed text-[15px]">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{msg.content}</ReactMarkdown>
+                      </div>
+                      {/* Asset display for this message */}
+                      {messageAssets[i] && <AssetDisplay assets={messageAssets[i]} />}
+                    </>
                   ) : (
                     <p className="whitespace-pre-wrap leading-relaxed text-[15px]">{msg.content}</p>
                   )}
@@ -313,4 +354,3 @@ function ShieldIcon() {
     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
   );
 }
-

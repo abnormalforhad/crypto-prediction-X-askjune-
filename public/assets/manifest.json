@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "generated": "2026-05-02",
+  "assets": [
+    {
+      "id": "btc-icon",
+      "path": "/assets/coins/btc.png",
+      "category": "coins",
+      "tags": ["bitcoin", "btc", "crypto", "digital gold", "satoshi"],
+      "alt": "Bitcoin coin icon",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "eth-icon",
+      "path": "/assets/coins/eth.png",
+      "category": "coins",
+      "tags": ["ethereum", "eth", "smart contracts", "defi", "erc-20", "erc20", "vitalik"],
+      "alt": "Ethereum coin icon",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "sol-icon",
+      "path": "/assets/coins/sol.png",
+      "category": "coins",
+      "tags": ["solana", "sol", "fast", "high performance", "web3"],
+      "alt": "Solana coin icon",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "bnb-icon",
+      "path": "/assets/coins/bnb.png",
+      "category": "coins",
+      "tags": ["bnb", "binance", "bsc", "exchange", "binance smart chain"],
+      "alt": "BNB coin icon",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "bullish-trend",
+      "path": "/assets/charts/bullish-trend.png",
+      "category": "charts",
+      "tags": ["bullish", "uptrend", "bull", "pump", "green", "buy", "long", "moon", "rally", "growth", "increase", "positive", "optimistic", "accumulation"],
+      "alt": "Bullish uptrend chart",
+      "width": 800,
+      "height": 400
+    },
+    {
+      "id": "bearish-trend",
+      "path": "/assets/charts/bearish-trend.png",
+      "category": "charts",
+      "tags": ["bearish", "downtrend", "bear", "dump", "red", "sell", "short", "crash", "decline", "decrease", "negative", "pessimistic", "correction", "dip"],
+      "alt": "Bearish downtrend chart",
+      "width": 800,
+      "height": 400
+    },
+    {
+      "id": "neutral-range",
+      "path": "/assets/charts/neutral-range.png",
+      "category": "charts",
+      "tags": ["neutral", "sideways", "consolidation", "range", "accumulation", "stable", "flat", "hold", "wait"],
+      "alt": "Neutral consolidation chart",
+      "width": 800,
+      "height": 400
+    },
+    {
+      "id": "defi-network",
+      "path": "/assets/concepts/defi-network.png",
+      "category": "concepts",
+      "tags": ["defi", "decentralized finance", "tvl", "liquidity", "yield", "farming", "staking", "pool", "swap", "amm", "dex", "uniswap", "aave", "compound", "protocol"],
+      "alt": "DeFi network visualization",
+      "width": 800,
+      "height": 400
+    },
+    {
+      "id": "blockchain",
+      "path": "/assets/concepts/blockchain.png",
+      "category": "concepts",
+      "tags": ["blockchain", "blocks", "chain", "distributed ledger", "consensus", "mining", "hash", "node", "network", "decentralized", "immutable"],
+      "alt": "Blockchain blocks visualization",
+      "width": 800,
+      "height": 400
+    },
+    {
+      "id": "smart-contract",
+      "path": "/assets/concepts/smart-contract.png",
+      "category": "concepts",
+      "tags": ["smart contract", "contract", "audit", "solidity", "evm", "bytecode", "vulnerability", "security audit", "code review", "erc-20", "token", "deploy"],
+      "alt": "Smart contract visualization",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "nft",
+      "path": "/assets/concepts/nft.png",
+      "category": "concepts",
+      "tags": ["nft", "non-fungible", "collectible", "digital art", "tokenized", "erc-721", "erc721", "opensea", "marketplace", "mint"],
+      "alt": "NFT art visualization",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "layer2",
+      "path": "/assets/concepts/layer2.png",
+      "category": "concepts",
+      "tags": ["layer 2", "l2", "rollup", "scaling", "polygon", "arbitrum", "optimism", "zk", "zero knowledge", "sidechain", "gas fees", "transaction fees", "throughput"],
+      "alt": "Layer 2 scaling visualization",
+      "width": 800,
+      "height": 400
+    },
+    {
+      "id": "security",
+      "path": "/assets/concepts/security.png",
+      "category": "concepts",
+      "tags": ["security", "wallet", "encryption", "private key", "seed phrase", "hack", "exploit", "phishing", "2fa", "cold storage", "hardware wallet", "protection"],
+      "alt": "Security shield visualization",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "whale-alert",
+      "path": "/assets/concepts/whale-alert.png",
+      "category": "concepts",
+      "tags": ["whale", "large transaction", "whale alert", "institutional", "big money", "market mover", "volume", "liquidity", "accumulation", "distribution"],
+      "alt": "Whale alert visualization",
+      "width": 800,
+      "height": 400
+    },
+    {
+      "id": "trading-terminal",
+      "path": "/assets/ui/trading-terminal.png",
+      "category": "ui",
+      "tags": ["trading", "terminal", "market", "exchange", "order book", "depth", "ticker", "price", "analysis", "technical analysis", "ta", "chart analysis"],
+      "alt": "Trading terminal interface",
+      "width": 800,
+      "height": 400
+    }
+  ]
+}
